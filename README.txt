@@ -38,7 +38,7 @@ To compile the example, you will need a test image.
 Here's how to prepare it.
 Make sure it is a BMP 565 image.
 You can do so on GIMP by Exporting the image as a BMP and doing the following :
-- Untick "Do not write color space information" in Compatibility Options. This is important.
+- Tick "Do not write color space information" in Compatibility Options. This is important.
 - Advanced Options -> Tick "R5 G6 B5" under 16 bits.
 
 You can then convert your image to SIF format used by the code by compiling the utility in tools/bmp565toSIF.
