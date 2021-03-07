@@ -1,0 +1,46 @@
+- Sound functions
+
+MDX playback
+ADPCM playback
+
+I would really badly need these...
+
+- Sprite functions
+
+It can draw bitmaps right now but we will need to support stuff to crop within the bitmap and then draw it on the screen.
+
+- Bypass the IOCLS completely ?
+
+This would need changes to the video initilization code.
+https://github.com/Mikejmoffitt/x68000-utils has some code that could potentially help.
+
+Nothing for the keyboard though... but they have some code for reading the joystick directly.
+
+typedef enum X68kJoyBits
+{
+	KEY_UP = 0x01,
+	KEY_DOWN = 0x02,
+	KEY_LEFT = 0x04,
+	KEY_RIGHT = 0x08,
+	KEY_A = 0x10,
+	KEY_B = 0x20,
+} X68kJoyBits;
+
+static inline X68kJoyBits x68k_joy_read(uint8_t id)
+{
+	volatile uint8_t *pad = (volatile uint8_t *)(0xE9A001 + (id ? 2 : 0));
+	return *pad;
+}
+
+
+- Replace Human68k with an open source alternative.
+The only alternative is NetBSD and i think Linux but both are unsuitable.
+A port of FreeDOS might be doable perhaps but so far, this was never ported to anything other than m68k.
+
+- Make the sprite functions use the sprite hardware routines
+Self-explicit.
+
+- Make the 256x256 32k color mode work.
+
+It sort of works but if you try to push a GRB555 buffer to it, it is half-squished.
+I would need to ask someone why does it do that.
